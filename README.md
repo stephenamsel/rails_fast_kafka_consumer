@@ -1,8 +1,10 @@
 # RailsFastKafkaConsumer
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_fast_kafka_consumer`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a meta-gem packaging other gems for performance optimization. It currently includes 
+1. Kafka Intake, which sets up a Kafka consumer to generate Request objects and run them as requests in the server. Those requests then return responses to the Kafka queues. This is to be run behind a high-performance proxy server like the one shown (in Go) in that gem's repository. It can be set to poll for many messages at once, running their corresponding requests in parallel using Ractors rather than filling the Rails thread pool, while using SQL Savepoints to retain atomicity.
+2. Rails Bulk Writer, which caches Write operations in a local SQLite database to be sent to the primary DB as bulk queries just before the Commit. While there can be issues with record-relations, in most use-cases it also pulls from the SQLite cache when reading to account for reading records written in the same transaction. 
 
-TODO: Delete this and the text above, and describe your gem
+If Kafka Intake is set to poll for many messages at once, Rails Bulk Writer will optimize DB contact for Write operations. Read operations can usually run on Read Replicas, which can scale out. 
 
 ## Installation
 
@@ -16,7 +18,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+Full usage instructions will be added later. For now, just read the instructions for the [Kafka Reader](https://github.com/stephenamsel/Rails-Kafka-Intake) and [DB optimizer](https://github.com/stephenamsel/rails-bulk-writer?tab=readme-ov-file#usage).
 
 ## Development
 
