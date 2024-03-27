@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Use Rails as a high-performance Kafka consumer"
   spec.description = "Optimize Rails' performance for high-throughput services, using this Gem to place it between Kafka and the Database."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage = "https://github.com/stephenamsel/rails_fast_kafka_consumer"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
