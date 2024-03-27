@@ -1,4 +1,4 @@
-# RailsFastKafkaConsumer
+# Rails Fast Kafka Consumer
 
 This is a meta-gem packaging other gems for performance optimization. It currently includes 
 1. Kafka Intake, which sets up a Kafka consumer to generate Request objects and run them as requests in the server. Those requests then return responses to the Kafka queues. This is to be run behind a high-performance proxy server like the one shown (in Go) in that gem's repository. It can be set to poll for many messages at once, running their corresponding requests in parallel using Ractors rather than filling the Rails thread pool, while using SQL Savepoints to retain atomicity.
